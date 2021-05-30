@@ -3,7 +3,7 @@
 
 <div class="row">
     <div class="col">
-        <form (ngSubmit)="guardar(miForm)" #miForm="ngForm">
+        <form (ngSubmit)="guardar()" #miForm="ngForm">
 
             <!-- Campo de producto-->
             <div class="mb-3 row">
@@ -20,7 +20,7 @@
                             minlength="3"
                             >
 
-                    <span class="form-text text-danger" *ngIf="miForm.controls.producto?.invalid && miForm.controls.producto?.touched">
+                    <span class="form-text text-danger" *ngIf="nombreValido()">
                         Debe de ser de 3 letras
                     </span>
                     
