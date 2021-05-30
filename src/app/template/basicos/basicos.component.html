@@ -3,16 +3,28 @@
 
 <div class="row">
     <div class="col">
-        <form >
+        <form (ngSubmit)="guardar(miForm)" #miForm="ngForm">
 
             <!-- Campo de producto-->
             <div class="mb-3 row">
                 <label class="col-sm-3 col-form-label">Producto</label>
                 <div class="col-sm-9">
+
+
                     <input  type="text" 
                             class="form-control"
-                            placeholder="Nombre del producto">
-                    <span class="form-text text-danger">Debe de ser de 3 letras</span>
+                            placeholder="Nombre del producto"
+                            ngModel
+                            name="producto"
+                            required
+                            minlength="3"
+                            >
+
+                    <span class="form-text text-danger" *ngIf="miForm.controls.producto?.invalid && miForm.controls.producto?.touched">
+                        Debe de ser de 3 letras
+                    </span>
+                    
+
                 </div>
             </div>
 
@@ -23,7 +35,10 @@
                 <div class="col-sm-9">
                     <input  type="number" 
                             class="form-control"
-                            placeholder="Precio del producto">                    
+                            placeholder="Precio del producto"
+                            ngModel
+                            name="precio"
+                            >                    
                 </div>
             </div>
 
@@ -34,7 +49,10 @@
                 <div class="col-sm-9">
                     <input  type="number" 
                             class="form-control"
-                            placeholder="existencias del producto">                    
+                            placeholder=" del producto"
+                            ngModel
+                            name="existencias"
+                            >                    
                 </div>
             </div>
 
@@ -49,5 +67,22 @@
             </div>
 
         </form>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col">
+        <span>valid</span>
+        <pre>{{miForm.valid}}</pre>
+
+        <span>Pristine</span>
+        <pre>{{miForm.pristine}}</pre>
+
+
+        <span>Touched</span>
+        <pre>{{miForm.touched}}</pre>
+
+        <span>valor</span>
+        <pre>{{miForm.value | json}}</pre>
     </div>
 </div>
