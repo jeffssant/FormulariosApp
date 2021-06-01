@@ -24,4 +24,8 @@ export class BasicosComponent implements OnInit {
     return this.miForm?.controls.producto?.invalid && this.miForm?.controls.producto?.touched
   }
 
+  validaPrecio():boolean {
+    return (!this.miForm?.controls.precio?.value) && this.miForm?.controls.precio?.touched || this.miForm?.controls.precio?.value < 0;
+  }
+
 }
