@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-dinamicos',
@@ -8,9 +9,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DinamicosComponent implements OnInit {
 
+  @ViewChild('miForm') miForm!: NgForm;
+
   constructor() { }
 
   ngOnInit(): void {
   }
+
+  guardar(){
+    console.log("formulario posteado");
+  }
+
+  nombreValido():boolean {
+    return this.miForm?.controls.name?.invalid && this.miForm?.controls.name?.touched
+  } 
 
 }
