@@ -38,13 +38,14 @@
                             placeholder="Precio del producto"
                             ngModel
                             name="precio"
-                            required
-                            min="0"
-                            minlength="1"
+                            required                           
+                            customMin
+                            [minimo]="0"
+                            [ngModel]="initForm.precio"
                             
                             >         
                             
-                            <span class="form-text text-danger" *ngIf="validaPrecio()">
+                            <span class="form-text text-danger" *ngIf="miForm.controls.precio?.touched && (!miForm.controls.precio.valid)">
                                 Precio debe ser igual o mayor que 0
                             </span>
                 </div>
@@ -58,9 +59,16 @@
                     <input  type="number" 
                             class="form-control"
                             placeholder=" del producto"
+                            customMin
+                            [minimo]="0"
+                            required
                             ngModel
-                            name="existencias"
-                            >                    
+                            name="existencias" 
+                            [ngModel]="initForm.existencias"                           
+                            >
+                            <span class="form-text text-danger" *ngIf="miForm.controls.existencias?.touched && (!miForm.controls.existencias.valid)">
+                                Existencias debem ser igual o mayor que 0
+                            </span>                    
                 </div>
             </div>
 
@@ -82,7 +90,7 @@
 <div class="row">
     <div class="col">
         <span>valid</span>
-        <pre>{{miForm.valid}}</pre>
+        <pre>{{miForm.controls.existencias?.valid}}</pre>
 
         <span>Pristine</span>
         <pre>{{miForm.pristine}}</pre>
