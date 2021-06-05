@@ -8,7 +8,7 @@
             <input type="text" class="form-control"
                                 placeholder="Nombre de la persona"
                                 name="name"
-                                ngModel
+                                [ngModel]="persona.nombre"
                                 required>
 
             <span class="form-text text-danger" *ngIf="nombreValido()">
@@ -22,9 +22,12 @@
         <div class="col-sm-9">
             <div class="input-group">
                 <input  type="text" class="form-control"
-                        placeholder="Agregar favorito">
+                        placeholder="Agregar favorito"
+                        [(ngModel)]="nuevoJuego"
+                        name="nuevoJuego"
+                        (keyup.enter)="agregarJuego()">
 
-                <button class="btn btn-outline-primary" type="button" id="button-addon2">Agregar</button>
+                <button class="btn btn-outline-primary" (click)="agregarJuego()">Agregar</button>
             </div>
         </div>
     </div>
@@ -34,7 +37,16 @@
     <div class="row mb-3">
         <label class="col-sm-3 col-form-label">Favoritos</label>
         <div class="col-sm-9">
-            <input type="text" class="form-control mb-1">            
+            <div    class="input-group mb-1"
+                    *ngFor="let item of persona.favoritos; let i = index">
+                <input 
+                        
+                        [(ngModel)]="item.nombre"
+                        name="juego_{{i}}"
+                        type="text" 
+                        class="form-control">       
+                        <button class="btn btn-outline-danger" type="button" (click)="eliminar(i)">Eliminar</button> 
+            </div>    
         </div>
     </div>
 
@@ -51,3 +63,5 @@
     </div>
 </form>
 
+<span>Persona</span>
+<pre>{{persona | json}}</pre>
