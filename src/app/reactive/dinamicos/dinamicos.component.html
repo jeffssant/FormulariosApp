@@ -1,15 +1,17 @@
 <h2>Reactive: <small>Dinamicos</small></h2>
 <hr>
 
-<form >
-    <div class="row mb-3">
+<form [formGroup]="miForm"  (ngSubmit)="guardar()" >
+    <div class="row mb-3" [formGroup]="miForm">
         <label class="col-sm-3 col-form-label">Nombre</label>
         <div class="col-sm-9">
-            <input type="text" class="form-control"
-                                placeholder="Nombre de la persona"
+            <input  type="text" 
+                    class="form-control"
+                    placeholder="Nombre de la persona"
+                    formControlName="nombre"
                                 >
 
-            <span class="form-text text-danger" >
+            <span class="form-text text-danger" *ngIf="campoEsValido('nombre')" >
                 Este campo es obligatorio
             </span>
         </div>
@@ -56,3 +58,20 @@
 
 <span>Persona</span>
 <!-- <pre>{{persona | json}}</pre> -->
+
+<div class="row">
+    <div class="col">
+        <span>valid</span>
+        <pre>{{miForm.valid}}</pre>
+
+        <span>Pristine</span>
+        <pre>{{miForm.pristine}}</pre>
+
+
+        <span>Touched</span>
+        <pre>{{miForm.touched}}</pre>
+
+        <span>valor</span>
+        <pre>{{miForm.value | json}}</pre>
+    </div>
+</div>

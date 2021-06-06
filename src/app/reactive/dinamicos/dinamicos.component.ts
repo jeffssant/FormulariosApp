@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-dinamicos',
@@ -6,11 +7,30 @@ import { Component, OnInit } from '@angular/core';
   styles: [
   ]
 })
-export class DinamicosComponent implements OnInit {
+export class DinamicosComponent {
 
-  constructor() { }
+  miForm: FormGroup = this.fb.group({
+    nombre: ['', [Validators.required, Validators.minLength(3)]],   
+  })
 
-  ngOnInit(): void {
+
+  constructor(private fb: FormBuilder) { }
+
+
+  campoEsValido(campo: string) {
+    return this.miForm.controls[campo].errors && this.miForm.controls[campo].touched
   }
+
+  guardar() {
+    if(this.miForm.invalid){
+      this.miForm.markAllAsTouched();
+      return;
+    }
+
+    console.log(this.miForm.value);
+    this.miForm.reset();
+  }
+
+  
 
 }

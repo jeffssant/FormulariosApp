@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder,  Validators } from '@angular/forms';
 
 @Component({
@@ -7,7 +7,14 @@ import { FormGroup, FormBuilder,  Validators } from '@angular/forms';
   styles: [
   ]
 })
-export class BasicosComponent  {
+export class BasicosComponent implements OnInit {
+
+  ngOnInit(){
+    this.miForm.reset({
+      nombre: 'Product',
+      precio: 100      
+    })
+  }
 
   // miForm: FormGroup = new FormGroup({
   //   'nombre': new FormControl('Produto'),
@@ -17,8 +24,8 @@ export class BasicosComponent  {
 
   miForm: FormGroup = this.fb.group({
     nombre: ['', [Validators.required, Validators.minLength(3)]],
-    precio: [0, [Validators.required, Validators.min(0)]],
-    existencias: [0, [Validators.required, Validators.min(0)]],
+    precio: ['', [Validators.required, Validators.min(0)]],
+    existencias: ['', [Validators.required, Validators.min(0)]],
   })
 
   constructor(private fb: FormBuilder) { }
@@ -28,6 +35,14 @@ export class BasicosComponent  {
     return this.miForm.controls[campo].errors && this.miForm.controls[campo].touched
   }
 
-  
+  guardar() {
+    if(this.miForm.invalid){
+      this.miForm.markAllAsTouched();
+      return;
+    }
+
+    console.log(this.miForm.value);
+    this.miForm.reset();
+  }
 
 }
