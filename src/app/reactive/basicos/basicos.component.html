@@ -3,27 +3,22 @@
 
 <div class="row">
     <div class="col">
-        <form  >
+        <form [formGroup]="miForm">
 
             <!-- Campo de producto-->
             <div class="mb-3 row">
                 <label class="col-sm-3 col-form-label">Producto</label>
                 <div class="col-sm-9">
 
-
                     <input  type="text" 
                             class="form-control"
                             placeholder="Nombre del producto"
-                            ngModel
-                            
-                           
-                            >
+                            formControlName="nombre">
 
                     <span class="form-text text-danger" >
                         Debe de ser de 3 letras
                     </span>
                     
-
                 </div>
             </div>
 
@@ -34,15 +29,11 @@
                 <div class="col-sm-9">
                     <input  type="number" 
                             class="form-control"
-                            placeholder="Precio del producto"
-                        
-                           
+                            placeholder="Precio del producto">         
                             
-                            >         
-                            
-                            <span class="form-text text-danger" >
-                                Precio debe ser igual o mayor que 0
-                            </span>
+                    <span class="form-text text-danger" >
+                        Precio debe ser igual o mayor que 0
+                    </span>
                 </div>
             </div>
 
@@ -53,12 +44,11 @@
                 <div class="col-sm-9">
                     <input  type="number" 
                             class="form-control"
-                            placeholder=" del producto"
-                            >
+                            placeholder=" del producto">
 
-                            <span class="form-text text-danger">
-                                Existencias debem ser igual o mayor que 0
-                            </span>                    
+                    <span class="form-text text-danger">
+                        Existencias debem ser igual o mayor que 0
+                    </span>                    
                 </div>
             </div>
 
@@ -76,3 +66,22 @@
     </div>
 </div>
 
+<div class="row">
+    <div class="col">
+        <span>valid</span>
+        <pre>{{miForm.valid}}</pre>
+
+        <span>Pristine</span>
+        <pre>{{miForm.pristine}}</pre>
+
+
+        <span>Touched</span>
+        <pre>{{miForm.touched}}</pre>
+
+        <span>valor</span>
+        <pre>{{miForm.value | json}}</pre>
+
+        <span>validar precio</span>
+        <pre>{{miForm.controls.precio?.valid | json}}</pre>
+    </div>
+</div>
