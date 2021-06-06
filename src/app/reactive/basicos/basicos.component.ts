@@ -16,12 +16,17 @@ export class BasicosComponent  {
   // })
 
   miForm: FormGroup = this.fb.group({
-    nombre: ['Produto', [Validators.required, Validators.minLength(3)]],
-    precio: [1500, [Validators.required, Validators.min(0)]],
-    existencias: [5, [Validators.required, Validators.min(0)]],
+    nombre: ['', [Validators.required, Validators.minLength(3)]],
+    precio: [0, [Validators.required, Validators.min(0)]],
+    existencias: [0, [Validators.required, Validators.min(0)]],
   })
 
   constructor(private fb: FormBuilder) { }
+
+
+  campoEsValido(campo: string) {
+    return this.miForm.controls[campo].errors && this.miForm.controls[campo].touched
+  }
 
   
 
