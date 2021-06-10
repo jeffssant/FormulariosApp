@@ -50,6 +50,10 @@ export class DinamicosComponent {
     this.miForm.reset();
   }
 
+  borrar(i: number) {
+    this.favoritosArr.removeAt(i);
+  }
+
   
 
 }
