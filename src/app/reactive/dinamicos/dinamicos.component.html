@@ -22,9 +22,11 @@
         <div class="col-sm-9">
             <div class="input-group">
                 <input  type="text" class="form-control"
-                        placeholder="Agregar favorito" >
+                        [formControl]="nuevoFavorito"
+                        placeholder="Agregar favorito"
+                        (keyup.enter)="agregarFavorito()" >
 
-                <button class="btn btn-outline-primary" >Agregar</button>
+                <button class="btn btn-outline-primary" (click)="agregarFavorito()" >Agregar</button>
             </div>
         </div>
     </div>
@@ -33,14 +35,18 @@
 
     <div class="row mb-3">
         <label class="col-sm-3 col-form-label">Favoritos</label>
-        <div class="col-sm-9">
-            <div class="input-group mb-1">
+        <div class="col-sm-9" formArrayName="favoritos">
+
+            <div class="input-group mb-1"
+                 *ngFor="let item of favoritosArr.controls; let i=index" >
 
                 <input  type="text" 
-                        class="form-control">   
+                        class="form-control"
+                        [formControlName]="i">   
 
                 <button class="btn btn-outline-danger" type="button" >Eliminar</button> 
             </div>    
+
         </div>
     </div>
 
@@ -73,5 +79,8 @@
 
         <span>valor</span>
         <pre>{{miForm.value | json}}</pre>
+
+        <span>Nuevo Juego</span>
+        <pre>{{nuevoFavorito.value | json}}</pre>
     </div>
 </div>
