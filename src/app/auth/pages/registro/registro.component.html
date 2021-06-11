@@ -53,9 +53,14 @@
                 <label  class="col-sm-3 col-form-label">Password</label>
                 <div class="col-sm-9">
                     <input  type="password"
+                            formControlName="password"
                             class="form-control"
                             placeholder="password de su cuenta">
-                    
+
+                    <span   class="form-text text-danger"
+                            *ngIf="campoNoValido('password')">
+                        La contraseña debe ser mayor de 6 caracteres
+                    </span>
                 </div>
             </div>
 
@@ -65,7 +70,13 @@
                 <div class="col-sm-9">
                     <input  type="password"
                             class="form-control"
+                            formControlName="confirmarPass"
                             placeholder="Confirmar la contraseña">
+
+                    <span   class="form-text text-danger"
+                            *ngIf="campoNoValido('confirmarPass')">
+                        Las contraseñas debem de ser iguales
+                    </span>
                     
                 </div>
             </div>
@@ -81,6 +92,8 @@
 </div>
 
 <h2>Form Valid: {{miForm.valid}}</h2>
+<h2>Form Errors:</h2>
+<pre> {{miForm.errors | json}}</pre>
 
 <h2>Nombre</h2>
 <pre>{{miForm.controls.nombre.errors | json}}</pre>
@@ -90,3 +103,9 @@
 
 <h2>Username</h2>
 <pre>{{miForm.controls.username.errors | json}}</pre>
+
+<h2>Password</h2>
+<pre>{{miForm.controls.password.errors | json}}</pre>
+
+<h2>corfirmar Password</h2>
+<pre>{{miForm.controls.confirmarPass.errors | json}}</pre>
